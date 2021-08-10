@@ -9,26 +9,49 @@ public class CSVReader {
 		
 		try 
 		{
-			ArrayList<String> list=new ArrayList<String>();
-			String path = "/home/jaguar/matches.csv";
+			HashMap<String, Integer> matchesPlayedPerYear = new HashMap<>();
+			HashMap<String, HashMap<String, Integer>> matchesWonPerTeamPerYear;
+			String path = "/home/jaguar/matches.csv";  
 			String line = "";
-			//String data[] = new String[1000];
- 			int count = 0;
-			//System.out.println(path);
+			String keys[];
+			
 			FileReader file = new FileReader(path);
 			BufferedReader br = new BufferedReader(file);
 			while((line = br.readLine()) != null)
 			{
-				if(count != 0)
-				{
-					//System.out.println(line);
-					//data[count] = line;
-					list.add(line);
+
+				String matchesData[] = line.split(",");
+				//System.out.println(matchesData[10]);
+		
+				if(matchesPlayedPerYear.containsKey(matchesData[1]))
+				{		
+					matchesPlayedPerYear.put(matchesData[1],matchesPlayedPerYear.get(matchesData[1]) + 1);
 				}
-				count = count + 1;
+				else
+				{
+					matchesPlayedPerYear.put(matchesData[1],1);
+				}
+				
+//
+//				if(matchesWonPerTeamPerYear.containsKey(matchesData[1]))
+//				{
+//					if(matchesWonPerTeamPerYear.containsKey(matchesData[10]))
+//					{
+//						matchesWonPerTeamPerYear.put();
+//					}
+//					else
+//					{
+//								
+//					}
+//				}
+//				else
+//				{
+//					matchesWonPerTeamPerYear.put(matchesData[1], matchesWonPerTeamPerYear.put(matchesData[10],1));
+//				}
 			}
 			br.close();
-			System.out.println(list);
+			//System.out.println(count);
+			System.out.println(matchesPlayedPerYear);
 			
 		}
 		catch(Exception e)
@@ -37,5 +60,12 @@ public class CSVReader {
 		}
 
 	}
+	
+//public void matchesPlayedPerYear() {
+//	
+//}
 
 }
+
+
+
